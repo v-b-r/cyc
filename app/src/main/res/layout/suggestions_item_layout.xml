@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_8"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="@string/item_name"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/maker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="@string/maker"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/power"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="@string/power_watt"
+                android:textColor="@color/grey"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="@string/time"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/total_units"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+                android:text="@string/total_units"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:visibility="gone"
+                android:src="@drawable/delete"/>
+
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_1"
+            android:layout_margin="@dimen/margin_5"
+            android:background="@color/grey"/>
+        <TableRow
+            android:id="@+id/blink_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_30"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:background="@drawable/edit"
+            android:padding="@dimen/margin_2"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/item_name2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text"
+                android:text="@string/item_name"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/maker2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text"
+                android:text="@string/maker"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/power2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text"
+                android:text="@string/power_watt"
+                android:textColor="@color/grey"
+                android:gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/time2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text"
+                android:text="@string/time"
+                android:gravity="center"
+                android:textColor="@color/grey"
+                android:layout_weight="1"/>
+
+
+            <TextView
+                android:id="@+id/total_units2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/small_text"
+                android:text="@string/total_units"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_text"
+                android:text="@string/total_units"
+                android:gravity="center"
+                android:textColor="@color/grey"/>
+
+        </TableRow>
+    </LinearLayout>
+</LinearLayout>

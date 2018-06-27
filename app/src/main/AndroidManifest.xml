@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="info.allywingz.com.consumerpowersaver">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".Application.App"
+        android:allowBackup="true"
+        android:icon="@drawable/logo_orange"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.LoginActivity" /><!--
+        <activity android:name=".Activities.Registration" />-->
+        <activity
+            android:name=".Activities.HomeScreen"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.Registration">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.UpdateActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".Activities.GenerateBill" />
+        <activity android:name=".Activities.SuggestionActivity" />
+        <activity android:name=".Activities.ShortBillGeneration" />
+        <activity android:name=".Activities.SavingsScreen"></activity>
+    </application>
+
+</manifest>

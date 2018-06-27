@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_4"
+            android:orientation="vertical">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_5"
+                android:weightSum="5">
+
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/item_name"
+                    android:textColor="@color/grey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/maker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/maker"
+                    android:gravity="center"
+                    android:textColor="@color/grey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/power"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/power_watt"
+                    android:textColor="@color/grey"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/time"
+                    android:gravity="center"
+                    android:textColor="@color/grey"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/total_units"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size"
+                    android:text="@string/total_units"
+                    android:gravity="center"
+                    android:textColor="@color/grey"
+                    android:layout_weight="1"/>
+
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:src="@drawable/delete"/>
+
+            </TableRow>
+        </LinearLayout>
+</LinearLayout>

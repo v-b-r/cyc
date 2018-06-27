@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dip">
+
+    <ImageView
+        android:id="@+id/spinner_img"
+        android:layout_width="@dimen/margin_20"
+        android:layout_height="@dimen/margin_20"
+        android:visibility="visible"
+        android:src="@drawable/tsspdcl_logo"/>
+
+    <TextView
+        android:id="@+id/spinner_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TSPDCL"
+        android:paddingLeft="@dimen/margin_5"
+        android:textSize="@dimen/text_size"
+        android:textColor="@color/dynamic_data_color" />
+</LinearLayout>

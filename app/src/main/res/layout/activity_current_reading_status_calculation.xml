@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.UserReadingDetails">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <include
+            layout="@layout/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/myLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_5"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="5dp"
+                card_view:cardElevation="5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_5">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:gravity="center"
+                        android:text="@string/billing_details_submit"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/heading_text_size"
+                        android:textStyle="bold" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:weightSum="1">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_from_date_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/from_date_et"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:hint="@string/from_date"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:textStyle="normal"
+                                android:drawableRight="@drawable/calender"/>
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_to_date_et"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/to_date_et"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:hint="@string/TO_date"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/calender"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:weightSum="1">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_present_submitted_treading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/present_submitted_treading"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:hint="@string/previous_reading"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/reading"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_previous_submitted_treading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/previous_submitted_treading"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:hint="@string/curr_reading"
+                                android:drawableRight="@drawable/reading"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:textStyle="normal" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:weightSum="1">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_units"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/present_submitted_units"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:hint="@string/total_units"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/units_symbol"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_avg_units_day"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/average_unit_per_day"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:hint="@string/average_units_per_day"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/units_symbol"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </TableRow>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                card_view:cardBackgroundColor="@color/white"
+                card_view:cardCornerRadius="5dp"
+                card_view:cardElevation="5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/margin_5"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="@string/current_day_reading"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/heading_text_size"
+                        android:textStyle="bold" />
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1"
+                        android:layout_marginTop="@dimen/margin_10">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_current_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/current_date_et"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:focusable="false"
+                                android:inputType="date"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:hint="@string/curr_date"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/calender"
+                                android:textStyle="normal" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_current_reading"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/calculated_units"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:hint="@string/curr_reading"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/scan"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/scan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/blue_borde"
+                            android:textSize="@dimen/text_size"
+                            android:padding="@dimen/margin_5"
+                            android:layout_gravity="center"
+                            android:textColor="@color/dynamic_data_color"
+                            android:text="@string/scan"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:weightSum="1">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_current_unit_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/current_unit_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:hint="@string/units_genrate"
+                                android:singleLine="true"
+                                android:textColor="@color/green"
+                                android:drawableRight="@drawable/units_symbol"
+                                android:textSize="@dimen/text_size"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_avg_reading_day"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/present_average_unit_per_day"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:maxLines="1"
+                                android:hint="@string/average_units_per_day"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/units_symbol"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1"
+                        android:layout_marginTop="@dimen/margin_10">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_current_bill_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/current_bill_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:focusable="false"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:hint="@string/avg_amount_charged"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:drawableRight="@drawable/money"
+                                android:textSize="@dimen/text_size"
+                                android:textStyle="normal" />
+
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/input_layout_count_for_bill_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5">
+
+                            <EditText
+                                android:id="@+id/days_left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.35"
+                                android:focusable="false"
+                                android:maxLines="1"
+                                android:hint="@string/day_left_for_next_billing"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:drawableRight="@drawable/calender"
+                                android:textStyle="normal" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </TableRow>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/margin_10"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:orientation="horizontal"
+                        android:padding="5dp"
+                        android:weightSum="1">
+
+                        <Button
+                            android:id="@+id/btn_back"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:background="@color/button_background"
+                            android:text="@string/back"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size" />
+
+                        <Button
+                            android:id="@+id/btnfinal_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/margin_10"
+                            android:layout_weight="0.5"
+                            android:background="@color/button_background"
+                            android:text="@string/ok"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

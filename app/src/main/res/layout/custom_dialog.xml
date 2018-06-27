@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/margin_10"
+        android:text="@string/alert"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/red"/>
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_10"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/green"
+        android:text="@string/message"/>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@color/green"
+            android:textColor="@color/white"
+            android:text="@string/control"/>
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:background="@color/button_background"
+            android:textColor="@color/white"
+            android:text="@string/ok"/>
+    </TableRow>
+</LinearLayout>

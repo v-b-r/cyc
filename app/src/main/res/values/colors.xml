@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="red">#FF0000</color>
+
+    <color name="black">#000000</color>
+
+    <color name="screen_bg_color">#F3F4F7</color>
+    <color name="white">#FFFFFF</color>
+    <color name="button_background">#135B96</color>
+    <color name="text_label_color">#135B97</color>
+    <color name="text_color">#000000</color>
+
+    <color name="screen_background">#ECEDF2</color>
+    <color name="green">#008000</color>
+    <color name="light_green">#9ACD32</color>
+    <color name="orange">#FFA500</color>
+
+    <color name="question_text_color">#4A4A4A</color>
+    <color name="grey">#808080</color>
+    <color name="transparentBlack">#64000000</color>
+    <color name="hint_color">#d3d3d3</color>
+
+    <color name="dynamic_data_color">#135B97</color>
+</resources>

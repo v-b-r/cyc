@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.GenerateBill">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <include
+            layout="@layout/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:visibility="visible" />
+
+
+    </RelativeLayout>
+
+
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_5">
+
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_5">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:weightSum="1">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/previous_reading"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/margin_5"
+                            android:paddingRight="@dimen/margin_5"
+                            android:text="@string/collan"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/small_text"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/previous_reading"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_size"
+                            android:textStyle="bold" />
+
+                    </TableRow>
+
+                    <TextView
+                        android:id="@+id/date_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="0.5"
+                        android:gravity="right"
+                        android:text="@string/date"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/small_text" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_30"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/help"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_5"
+                        android:text="@string/help"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/present_reading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:digits="0123456789"
+                        android:gravity="center"
+                        android:hint="Enter Units"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_5"
+                        android:background="@drawable/blue_borde"
+                        android:padding="@dimen/margin_5"
+                        android:text="@string/check"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <LinearLayout
+                    android:id="@+id/display_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:orientation="vertical">
+
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_40"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:text="@string/rs"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:id="@+id/gen_unit_charge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/amount"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/big_text_size"
+                            android:textStyle="bold" />
+
+
+                    </TableRow>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Expected Month Bill"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/small_text" />
+
+
+                    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/current_avg_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_40"
+                        card_view:cardCornerRadius="1dp"
+                        card_view:cardElevation="1dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_5">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.3"
+                                    android:text="Present Avg Units"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/small_text" />
+
+                                <TableRow
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.7">
+
+                                    <TextView
+                                        android:id="@+id/total_units"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/margin_5"
+                                        android:text="5.0"
+                                        android:textColor="@color/black"
+                                        android:textSize="@dimen/heading_text_size"
+                                        android:textStyle="bold" />
+                                </TableRow>
+
+                            </TableRow>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/margin_1"
+                                android:layout_marginBottom="@dimen/margin_10"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:background="@color/grey" />
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.3"
+                                    android:text="Reduced Avg Units"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/small_text" />
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/margin_5"
+                                    android:layout_weight="0.7"
+                                    android:text="5.0"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/heading_text_size"
+                                    android:textStyle="bold" />
+                            </TableRow>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/margin_1"
+                                android:layout_marginBottom="@dimen/margin_10"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:background="@color/grey" />
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.3"
+                                    android:text="No of Days Left"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/small_text" />
+
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/margin_5"
+                                    android:layout_weight="0.7"
+                                    android:text="5.0"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/heading_text_size"
+                                    android:textStyle="bold" />
+                            </TableRow>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </ScrollView>
+</RelativeLayout>

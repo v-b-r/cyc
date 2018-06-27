@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.GenerateBill">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+
+        <include
+            layout="@layout/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
+
+    <!-- Footer aligned to bottom -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footer"
+        android:layout_below="@+id/header"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_borde"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_5">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/board_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_80"
+                        android:src="@drawable/tsspdcl_logo"
+                        android:scaleType="fitXY"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:paddingLeft="@dimen/margin_10"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/board_main_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:text="@string/m_p_s_p_d_c_l"
+                        android:textStyle="bold"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/heading_text_size" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/electricity_bill_cum_notice"
+                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/heading_text_size" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_5"
+                android:text="@string/line"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:text="DT"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:text="TI"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/bill"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:text="BILL"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/ero_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:text="ERONO"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TextView
+                android:id="@+id/ero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ERO"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/sec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="SEC"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/area_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:text="AREA"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/grp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:text="GRP"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_5"
+                android:text="@string/line"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TextView
+                android:id="@+id/sc_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="SC.NO"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TextView
+                android:id="@+id/usc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="USC"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="NAME"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ADDR"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/CAT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="CAT"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/contracted_load"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="CONTACTRACT"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/meter_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Meter"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/mf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="MF"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_5"
+                android:text="@string/line"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PREVIOUS"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PRESENT"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="KWH :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/previous"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PREVIOUS"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/present"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PRESENT"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="DATE :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/previous_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PREVIOUS"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/present_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PRESENT"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="STATUS"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/previous_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="01"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/present_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="01"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="UNITS :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/previous_units"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PREVIOUS"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:id="@+id/present_units"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PRESENT"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="RMS :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/rmd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="PREVIOUS"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_5"
+                android:text="@string/line"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="ENERGY CHARGES :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/energy_charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="CUST CHARGES :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/cust_charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="ELECTRICITY DUTY :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/electricity_duty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="EDINT :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/edint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="ADDITIONAL CHARGES :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/additional_charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="ACD SURCHARGES :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/acd_charges"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="INT. ON SD :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/int_on_sd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="-12.68"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="BILL AMOUNT :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/bill_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="LOSS/GAIN :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/loss_gain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.02"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="NET AMOUNT :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/net_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="ARREARS -------"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/text_size" />
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/as_on_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="AS ON :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/after"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="AFTER "
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="TOTAL AMOUNT :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/total_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="A.C.D DUE :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="TOTAL DUE :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/heading_text_size" />
+
+
+                <TextView
+                    android:id="@+id/total_due"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/heading_text_size" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_5"
+                android:text="@string/line"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="DUE DATE:"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/due_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="LAST PAID DATE:"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/last_paid_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="0.00"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/heading_text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="AAO CELL NO :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/aao_cell_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/heading_text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="ADE CELL NO :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/ade_cell_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/heading_text_size" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="SUBSIDY/UNIT :"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/text_size" />
+
+
+                <TextView
+                    android:id="@+id/subsidy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="1.69"
+                    android:textColor="@color/dynamic_data_color"
+                    android:textSize="@dimen/heading_text_size" />
+
+            </TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_5"
+                android:text="@string/line"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_120"
+                android:src="@drawable/logo" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
