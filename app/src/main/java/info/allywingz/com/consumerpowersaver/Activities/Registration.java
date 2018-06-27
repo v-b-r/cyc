@@ -107,7 +107,13 @@ public class Registration extends AppCompatActivity {
                 gameScore.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
-                        Log.i("ParseException","==>"+e.toString());
+                        // TODO: Replace below Toast messages with proper functionality
+                        if (e==null){
+                            Utility.showToast(Registration.this, "Successfully registered!");
+                        } else {
+                            Log.i("ParseException","==>"+e.toString());
+                            Utility.showToast(Registration.this, "Oops! Something went wrong. Please try again later");
+                        }
                     }
                 });
                 Log.i("FirstName","==>"+gameScore.getString("FirstName"));

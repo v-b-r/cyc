@@ -7,11 +7,13 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         Parse.initialize(new Parse.Configuration.Builder(this)
-                .applicationId("5ce5bd84-bca5-4e86-a7d6-af9e7ed93cc5\n")
-                .clientKey("CYC2018")
+                .applicationId("99147be1-2898-46f9-9648-855d15e57620")
+                .clientKey("ocHoUCaq4oSoiXjEhGAJdrvNsDqPGicI")
                 .server("https://api.parse.buddy.com/parse/")
                 .build()
         );
+        Parse.Buddy.initialize();
     }
 }
