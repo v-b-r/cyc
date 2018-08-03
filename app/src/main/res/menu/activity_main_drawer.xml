@@ -2,22 +2,37 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
+            android:icon="@drawable/electric_meter"
             android:title="Previous Bill" />
         <item
             android:id="@+id/nav_power"
+            android:icon="@drawable/electric_meter"
             android:title="Present Bill Status" />
         <item
             android:id="@+id/nav_appliances"
+            android:icon="@drawable/appliance_vector"
             android:title="Appliances" />
         <item
             android:id="@+id/nav_profile"
+            android:icon="@drawable/profile_vector"
             android:title="Profile" />
+
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/history_vector"
+            android:title="History" />
+
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/feedback_vector"
+            android:title="Feedback" />
+
         <item
             android:id="@+id/nav_logout"
+            android:icon="@drawable/logout_vector"
             android:title="Logout" />
     </group>
 
@@ -33,5 +48,4 @@
                 android:title="Send" />
         </menu>
     </item>-->
-
 </menu>

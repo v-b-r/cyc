@@ -2,7 +2,8 @@
     <!--<string name="app_name">Consumer\nPowerSaver</string>-->
     <string name="app_name">CYC</string>
     <string name="sample_name">Consumer Power Saver</string>
-    <string name="mobile_no_email_id">Mobile No/Email ID</string>
+    <!--<string name="mobile_no_email_id">Mobile No/Email ID</string>-->
+    <string name="mobile_no_email_id">Mobile No</string>
     <string name="password">Password</string>
     <string name="reset">Reset</string>
     <string name="sign_in">Sign In</string>
@@ -19,7 +20,7 @@
     <string name="submit">Submit</string>
 
 
-    <string name="cpc">Meter Reading Details</string>
+    <string name="cpc">Previous Bill Details</string>
     <string name="month_type">Month</string>
     <string name="date">Date</string>
     <string name="hint_present_date">Present Date</string>
@@ -105,7 +106,7 @@
     <string name="watts">Watts</string>
     <string name="time">Usage(hrs)</string>
     <string name="x">X</string>
-    <string name="appliances_added">Appliances Status</string>
+    <string name="appliances_added">Appliances Wise Usage</string>
     <string name="no_appliances">No Appliances Added</string>
     <string name="total_units_consumed">Total Units Consumed</string>
     <string name="total_units_label">Total Units</string>
@@ -144,4 +145,34 @@
     <string name="how">How ?</string>
     <string name="required">Required</string>
     <string name="you_can">You can</string>
+    <string name="Internet_Error">Please Check your Internet Connection</string>
+    <string name="user_reading_details">Previous Bill</string>
+    <string name="present_bill_status">Present Bill Status</string>
+    <string name="appliances">Appliances</string>
+    <string name="rate_of_unit_details">Rate of Unit Details : </string>
+    <string name="amount_rs_unit">Amount(Rs./Unit)</string>
+    <string name="_0_50">0-50</string>
+    <string name="_51_100">51-100</string>
+    <string name="_1_45">1.45</string>
+    <string name="_2_60">2.60</string>
+    <string name="_0_100">0-100</string>
+    <string name="_3_30">3.30</string>
+    <string name="_101_200">101-200</string>
+    <string name="_4_30">4.30</string>
+    <string name="your_bill">Your Bill</string>
+    <string name="total">Total</string>
+    <string name="_201_300">201-300</string>
+    <string name="_0_200">0-200</string>
+    <string name="_5">5</string>
+    <string name="_7_20">7.20</string>
+    <string name="_301_400">301-400</string>
+    <string name="history">History</string>
+    <string name="no_history_found">No HIstory Found</string>
+    <string name="profile_details">Profile Details</string>
+    <string name="update">Update</string>
+    <string name="update_success">Updated Successfully</string>
+    <string name="feedback">Feedback</string>
+    <string name="fixed_charges">Fixed Charges</string>
+    <string name="share">Share</string>
+    <string name="previous_bill_date">Previous Bill Date</string>
 </resources>

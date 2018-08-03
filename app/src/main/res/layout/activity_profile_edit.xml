@@ -182,7 +182,7 @@
                     android:textColor="@color/white"
                     android:layout_marginLeft="@dimen/margin_5"
                     android:background="@color/button_background"
-                    android:text="@string/submit"
+                    android:text="@string/update"
                     android:textSize="@dimen/text_size" />
 
             </LinearLayout>

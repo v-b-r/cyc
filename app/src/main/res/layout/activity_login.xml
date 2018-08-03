@@ -39,23 +39,34 @@
         android:layout_above="@+id/footer"
         android:padding="@dimen/margin_10">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_5"
             android:layout_gravity="top|center_horizontal"
             android:orientation="vertical">
 
+            <ProgressBar
+                android:id="@+id/progressSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/colorAccent"
+                android:visibility="invisible"
+                android:layout_centerInParent="true" />
+
             <ImageView
+                android:id="@+id/logo"
                 android:layout_width="@dimen/margin_130"
                 android:layout_height="@dimen/margin_130"
                 android:src="@drawable/logo_orange"
                 android:scaleType="fitCenter"
-                android:layout_gravity="center"/>
+                android:layout_centerHorizontal="true"/>
 
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_username"
+                android:layout_below="@+id/logo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_20">
@@ -67,13 +78,17 @@
                     android:hint="@string/mobile_no_email_id"
                     android:singleLine="true"
                     android:textSize="@dimen/text_size"
-                    android:inputType="text" />
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:digits="0123456789"/>
 
             </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_password"
+                android:layout_below="@+id/input_layout_username"
                 android:layout_marginTop="@dimen/margin_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -91,7 +106,9 @@
 
 
             <LinearLayout
+                android:id="@+id/buttons"
                 android:layout_width="match_parent"
+                android:layout_below="@+id/input_layout_password"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_15"
@@ -122,6 +139,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/registr_layout"
+                android:layout_below="@+id/buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -141,6 +160,7 @@
 
 
             <LinearLayout
+                android:layout_below="@+id/registr_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -160,7 +180,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

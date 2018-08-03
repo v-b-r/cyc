@@ -3,12 +3,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "info.allywingz.com.consumerpowersaver"
-        minSdkVersion 21
+        applicationId "www.coral.innovations.cyc"
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -38,7 +39,7 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'com.google.android.gms:play-services-location:7.8.0'
-    implementation "com.buddy.parse:parse-android:1.16.1"
+    implementation 'com.buddy.parse:parse-android:1.16.1'
     implementation 'com.parse.bolts:bolts-android:1.4.0'
-
+    implementation 'com.intuit.sdp:sdp-android:1.0.5'
 }
