@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/margin_10"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_5"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feedback"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:paddingLeft="@dimen/margin_10"
+                android:paddingRight="@dimen/margin_5"
+                android:textColor="@color/dynamic_data_color"
+                android:textSize="@dimen/heading_text_size"/>
+
+            <ImageView
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:src="@drawable/feedback_vector"/>
+
+        </TableRow>
+
+        <EditText
+            android:id="@+id/feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:background="@drawable/blue_borde"
+            android:padding="@dimen/margin_10"
+            android:hint="Enter Feedback"
+            android:maxLines="10"
+            android:minLines="6"
+            android:textSize="@dimen/text_size"
+            android:scrollbars="vertical" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_40"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Recommend CYC ?"
+            android:textStyle="bold"
+            android:textColor="@color/dynamic_data_color"
+            android:textSize="@dimen/heading_text_size"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_40"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/dynamic_data_color"
+            android:text="How likely are you to recommend CYC to your Friends and Family"
+            android:textSize="@dimen/text_size"/>
+
+        <RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:id="@+id/share_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/margin_60"
+                android:layout_height="@dimen/margin_60"
+                android:src="@drawable/share"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dynamic_data_color"
+                android:text="@string/share"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_10"
+                android:textSize="@dimen/heading_text_size"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/submit"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@drawable/button_background"/>
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/other_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_20"
+            card_view:cardCornerRadius="1dp"
+            card_view:cardElevation="1dp"
+            android:visibility="gone"
+            card_view:cardUseCompatPadding="true">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:gravity="center"
+                    android:text="@string/rate_of_unit_details"
+                    android:textColor="@color/red"
+                    android:textSize="@dimen/text_size" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1"
+                    android:layout_margin="@dimen/margin_3"
+                    android:background="@color/grey" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/total_units"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/amount_rs_unit"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/fixed_charges"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/small_text" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Total Amount(Rs.)"
+                        android:textColor="@color/dynamic_data_color"
+                        android:textSize="@dimen/small_text" />
+
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_1"
+                    android:layout_margin="@dimen/margin_3"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:id="@+id/layout_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_weight="1"
+                        android:text="Category A :(Upto 30 units/Month)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+                    <TableRow
+                        android:id="@+id/tariff_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0-30"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="3.10"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="--"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="288.3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_weight="1"
+                        android:text="Category B(i) :(Above 100 and Upto 200 units/Month)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+                    <TableRow
+                        android:id="@+id/tariff_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0-50"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="3.85"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="40"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="155.5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+                    <TableRow
+                        android:id="@+id/tariff_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="51-100"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4.70"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="330"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="330"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+                    <TableRow
+                        android:id="@+id/tariff_four"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_101_200"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_4_30"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="430"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:layout_weight="1"
+                        android:text="Category B(ii) :(Above 200 units/Month)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/small_text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+                    <TableRow
+                        android:id="@+id/tariff_five"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_0_200"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_5"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1000"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+
+                    <TableRow
+                        android:id="@+id/tariff_six"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_201_300"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_7_20"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="720"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+
+
+                    <TableRow
+                        android:id="@+id/tariff_seven"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_301_400"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/_7_20"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="850"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_text" />
+
+
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_1"
+                        android:layout_margin="@dimen/margin_3"
+                        android:background="@color/grey" />
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</RelativeLayout>
