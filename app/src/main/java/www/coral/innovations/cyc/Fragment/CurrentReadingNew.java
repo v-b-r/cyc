@@ -377,7 +377,12 @@ public class CurrentReadingNew extends Fragment {
         calculatedUnits = 0.0 ;
         req_expected_Units = 0.0 ;
 
-        String days_for_Avg = String.valueOf(daysBetween).replace(".0","");
+        String days_for_Avg;
+        if (daysBetween >= 1){
+            days_for_Avg = String.valueOf(daysBetween).replace(".0","");
+        } else {
+            days_for_Avg = "1";
+        }
         double AvgUnits = Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING));
         AvgUnits =  AvgUnits / Double.parseDouble(days_for_Avg) ;
 
@@ -392,7 +397,7 @@ public class CurrentReadingNew extends Fragment {
         calculatedUnits = ((Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING)))) ;
         Log.i("calculatedUnits 0","==>"+calculatedUnits);
         req_expected_Units = calculatedUnits ;
-        calculatedUnits = calculatedUnits + (AvgUnits * Double.parseDouble(days_left.getText().toString().trim()));
+        calculatedUnits = calculatedUnits + (AvgUnits * Math.abs(Double.parseDouble(days_left.getText().toString().trim())));
 
         calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(calculatedUnits, 2)));
         Log.i("calculatedUnits 1","==>"+calculatedUnits);
@@ -405,25 +410,30 @@ public class CurrentReadingNew extends Fragment {
         setCalculatedUnitsToAmount(calculated_units);
 
         double required_units_value = 0.0 ;
-        if (calculatedUnits> 90 && calculatedUnits< 110) {
-            required_units_value = 100 - calculatedUnits;
-            Log.i("required_units_value A", "==>" + required_units_value);
-            required_text.setVisibility(View.VISIBLE);
-            required_units.setVisibility(View.VISIBLE);
-            offer_layout.setVisibility(View.VISIBLE);
-            other_layout.setVisibility(View.GONE);
-            offer_amount.setText("127.5");
-        } else if (calculatedUnits > 180 && calculatedUnits < 220) {
-            required_units_value = 200 - calculatedUnits;
-            Log.i("required_units_value B", "==>" + required_units_value);
-            required_text.setVisibility(View.VISIBLE);
-            required_units.setVisibility(View.VISIBLE);
-            offer_layout.setVisibility(View.VISIBLE);
-            other_layout.setVisibility(View.GONE);
-            offer_amount.setText("240");
+        if (Double.parseDouble(days_left.getText().toString().trim()) > 0) {
+            if (calculatedUnits> 90 && calculatedUnits< 110) {
+                required_units_value = 100 - calculatedUnits;
+                Log.i("required_units_value A", "==>" + required_units_value);
+                required_text.setVisibility(View.VISIBLE);
+                required_units.setVisibility(View.VISIBLE);
+                offer_layout.setVisibility(View.VISIBLE);
+                other_layout.setVisibility(View.GONE);
+                offer_amount.setText("127.5");
+            } else if (calculatedUnits > 180 && calculatedUnits < 220) {
+                required_units_value = 200 - calculatedUnits;
+                Log.i("required_units_value B", "==>" + required_units_value);
+                required_text.setVisibility(View.VISIBLE);
+                required_units.setVisibility(View.VISIBLE);
+                offer_layout.setVisibility(View.VISIBLE);
+                other_layout.setVisibility(View.GONE);
+                offer_amount.setText("240");
+            } else {
+                required_text.setVisibility(View.GONE);
+            }
         } else {
             required_text.setVisibility(View.GONE);
-        } /*else {
+        }
+         /*else {
             required_units_value = 300 - req_expected_Units;
             required_text.setVisibility(View.GONE);
             required_units.setVisibility(View.GONE);
@@ -433,7 +443,8 @@ public class CurrentReadingNew extends Fragment {
             Log.i("required_units_value C", "==>" + required_units_value);
         }*/
 
-        required_units_value = required_units_value / Double.parseDouble(days_left.getText().toString().trim());
+        if (Double.parseDouble(days_left.getText().toString().trim()) >= 1)
+            required_units_value = required_units_value / Double.parseDouble(days_left.getText().toString().trim());
         required_units_value = Utility.DecimalUtils.round(required_units_value, 2);
         required_units.setText(String.valueOf(required_units_value).replace("-", ""));
 
@@ -583,9 +594,9 @@ public class CurrentReadingNew extends Fragment {
              *         TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS)
              */
             System.out.println("==>" + daysBetween);
-            if (daysBetween>31){
-                setDaysAlert();
-            }
+//            if (daysBetween>31){
+//                setDaysAlert();
+//            }
 
             int integer = (int) daysBetween;
             integer = Integer.parseInt(storage.getValue(Constants.TOTAL_DAYS)) - integer;
