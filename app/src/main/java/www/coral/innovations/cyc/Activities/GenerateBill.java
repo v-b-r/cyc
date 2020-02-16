@@ -47,7 +47,7 @@ public class GenerateBill extends AppCompatActivity {
         name = (TextView)findViewById(R.id.name);
         address = (TextView)findViewById(R.id.address);
         CAT = (TextView)findViewById(R.id.CAT);
-        contracted_load = (TextView)findViewById(R.id.contracted_load);
+        contracted_load = (TextView)findViewById(R.id.meter_load);
         meter_no = (TextView)findViewById(R.id.meter_no);
         mf = (TextView)findViewById(R.id.mf);
         board_main_name = (TextView)findViewById(R.id.board_main_name);

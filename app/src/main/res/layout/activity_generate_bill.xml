@@ -265,7 +265,7 @@
                 android:textSize="@dimen/text_size" />
 
             <TextView
-                android:id="@+id/contracted_load"
+                android:id="@+id/meter_load"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -4,32 +4,23 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,10 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.util.Util;
-import com.github.mikephil.charting.utils.Utils;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
@@ -48,9 +36,13 @@ import com.parse.SaveCallback;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import www.coral.innovations.cyc.Activities.HomeScreen;
+import www.coral.innovations.cyc.Model.DetailedChargesModel;
+import www.coral.innovations.cyc.Model.GetChargesModel;
 import www.coral.innovations.cyc.R;
+import www.coral.innovations.cyc.Server.ServerCalls;
 import www.coral.innovations.cyc.Storage.Constants;
 import www.coral.innovations.cyc.Storage.Storage;
 import www.coral.innovations.cyc.Storage.Utility;
@@ -62,7 +54,7 @@ public class CurrentReadingNew extends Fragment {
     String current_date ;
     Storage storage;
     CountDownTimer mTimer;
-    EditText present_reaing;
+    EditText present_reading;
     TableRow tariff_one, required_text, tariff_two, tariff_three, tariff_four, tariff_five, tariff_six, tariff_seven ;
     TextView previous_bill_date, offer_amount, history, previous_reading, date_time, required_units, check, calculated_units, units_generated, gen_unit_charge, avg_unit, avg_amnt, days_left, expected_units, expected_bill, click_here, help;
     LinearLayout display_layout, blink_offer, layout_one, layout_two, layout_three;
@@ -83,14 +75,14 @@ public class CurrentReadingNew extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_current_reading_new, container, false);
         storage = new Storage(getActivity());
-        present_reaing = (EditText) v.findViewById(R.id.present_reaing);
+        present_reading = (EditText) v.findViewById(R.id.present_reaing);
 
         previous_bill_date = (TextView) v.findViewById(R.id.previous_bill_date);
         previous_reading = (TextView) v.findViewById(R.id.previous_reading);
         meter_image = (ImageView)v.findViewById(R.id.meter_image);
 
-        present_reaing.requestFocus();
-        //setKeyboardFocus(present_reaing);
+        present_reading.requestFocus();
+        //setKeyboardFocus(present_reading);
 
         Log.i("PRESENT_READING", "--->" + storage.getValue(Constants.PRESENT_READING));
         previous_reading.setText(storage.getValue(Constants.PRESENT_READING));
@@ -155,7 +147,7 @@ public class CurrentReadingNew extends Fragment {
         newtimer.start();
 
         if (storage.getValue(Constants.SAVE_NEW_DATA).trim().length() != 0) {
-            present_reaing.setText(storage.getValue(Constants.SAVE_NEW_DATA));
+            present_reading.setText(storage.getValue(Constants.SAVE_NEW_DATA));
             setStaticData();
         }
 
@@ -170,13 +162,13 @@ public class CurrentReadingNew extends Fragment {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (present_reaing.getText().toString().trim().length() == 0) {
-                    present_reaing.setError("Enter Reading");
-                    present_reaing.requestFocus();
+                if (present_reading.getText().toString().trim().length() == 0) {
+                    present_reading.setError("Enter Reading");
+                    present_reading.requestFocus();
                 } else {
                     getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
                     if (Utility.isNetworkAvailable(getActivity())) {
-                         if (Double.parseDouble(present_reaing.getText().toString().trim())>Double.parseDouble(previous_reading.getText().toString().trim())){
+                         if (Double.parseDouble(present_reading.getText().toString().trim())>Double.parseDouble(previous_reading.getText().toString().trim())){
                              setData();
                          }else{
                              Utility.showToast(getActivity(), "Current Reading Cannot be less than Previous Reading..!");
@@ -206,7 +198,7 @@ public class CurrentReadingNew extends Fragment {
             @Override
             public void onClick(View v) {
                 newtimer.cancel();
-                storage.saveSecure(Constants.SAVE_NEW_DATA, present_reaing.getText().toString().trim());
+                storage.saveSecure(Constants.SAVE_NEW_DATA, present_reading.getText().toString().trim());
                 Fragment fragment = null;
                 Class fragmentClass = null;
                 FragmentManager fragmentManager;
@@ -313,14 +305,14 @@ public class CurrentReadingNew extends Fragment {
         req_expected_Units = 0.0 ;
 
         String days_for_Avg = String.valueOf(daysBetween).replace(".0","");
-        double AvgUnits = Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING));
+        double AvgUnits = Double.parseDouble(present_reading.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING));
         AvgUnits =  AvgUnits / Double.parseDouble(days_for_Avg) ;
 
         avg_unit.setText(String.valueOf(Utility.DecimalUtils.round(AvgUnits, 2)));
         Log.i("AvgUnits","==>"+AvgUnits);
 
-        // calculatedUnits = Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(previous_reading.getText().toString().trim());
-        calculatedUnits = ((Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING)))) ;
+        // calculatedUnits = Double.parseDouble(present_reading.getText().toString().trim()) - Double.parseDouble(previous_reading.getText().toString().trim());
+        calculatedUnits = ((Double.parseDouble(present_reading.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING)))) ;
         Log.i("calculatedUnits 0","==>"+calculatedUnits);
         req_expected_Units = calculatedUnits ;
         calculatedUnits = calculatedUnits + (AvgUnits * Double.parseDouble(days_left.getText().toString().trim()));
@@ -383,23 +375,37 @@ public class CurrentReadingNew extends Fragment {
         } else {
             days_for_Avg = "1";
         }
-        double AvgUnits = Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING));
-        AvgUnits =  AvgUnits / Double.parseDouble(days_for_Avg) ;
+        double curUnits = Double.parseDouble(present_reading.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING));
+        double AvgUnits =  curUnits / Double.parseDouble(days_for_Avg) ;
 
         if (Double.parseDouble(days_for_Avg) !=0) {
             Log.i("AvgUnits", "==>" + AvgUnits);
             avg_unit.setText(String.valueOf(Utility.DecimalUtils.round(AvgUnits, 2)));
         }else{
             Log.i("AvgUnits", "==>" + AvgUnits);
-            avg_unit.setText(String.valueOf(Utility.DecimalUtils.round(0.0, 2)));
+            avg_unit.setText("0.0");
         }
-       // calculatedUnits = Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(previous_reading.getText().toString().trim());
-        calculatedUnits = ((Double.parseDouble(present_reaing.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING)))) ;
-        Log.i("calculatedUnits 0","==>"+calculatedUnits);
-        req_expected_Units = calculatedUnits ;
-        calculatedUnits = calculatedUnits + (AvgUnits * Math.abs(Double.parseDouble(days_left.getText().toString().trim())));
 
-        calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(calculatedUnits, 2)));
+       // calculatedUnits = Double.parseDouble(present_reading.getText().toString().trim()) - Double.parseDouble(previous_reading.getText().toString().trim());
+//        calculatedUnits = ((Double.parseDouble(present_reading.getText().toString().trim()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING)))) ;
+        Log.i("calculatedUnits 0","==>"+curUnits);
+        req_expected_Units = curUnits ;
+        if (Double.parseDouble(days_left.getText().toString().trim()) > 0) {
+            calculatedUnits = curUnits + (AvgUnits * Math.abs(Double.parseDouble(days_left.getText().toString().trim())));
+        } else {
+            calculatedUnits = curUnits;
+        }
+
+
+        Date prevDate = new Date();
+        try {
+            prevDate = new SimpleDateFormat("dd-MMM-yyyy", Locale.US).parse(storage.getValue(Constants.PRESENT_DATE));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+//        calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(calculatedUnits, 2)));
+        calculated_units.setText("...");
         Log.i("calculatedUnits 1","==>"+calculatedUnits);
         Log.i("calculatedUnits 2","==>"+calculated_units.getText().toString().trim());
 
@@ -407,7 +413,7 @@ public class CurrentReadingNew extends Fragment {
         offer_layout.setVisibility(View.GONE);
         other_layout.setVisibility(View.VISIBLE);
 
-        setCalculatedUnitsToAmount(calculated_units);
+//        setCalculatedUnitsToAmount(calculated_units);
 
         double required_units_value = 0.0 ;
         if (Double.parseDouble(days_left.getText().toString().trim()) > 0) {
@@ -448,7 +454,16 @@ public class CurrentReadingNew extends Fragment {
         required_units_value = Utility.DecimalUtils.round(required_units_value, 2);
         required_units.setText(String.valueOf(required_units_value).replace("-", ""));
 
-        SaveCheckedDetails() ;
+        ParseObject readingParseObj = getReadingDetailsParseObject();
+        GetChargesModel getCharges = new GetChargesModel(String.valueOf(calculatedUnits),
+                storage.getValue(Constants.METER_CATEGORY),
+                storage.getValue(Constants.METER_SUBCATEGORY),
+                storage.getValue(Constants.METER_PHASE),
+                storage.getValue(Constants.METER_LOAD),
+                storage.getValue(Constants.METER_LOAD),
+                new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(prevDate)//"2020-01-18"
+        );
+        ServerCalls.getDetailedCharges(this.getActivity(), getCharges, calculated_units, readingParseObj, storage);
     }
 
     private void setCalculatedUnitsToAmount(TextView calculated_units) {
@@ -526,11 +541,11 @@ public class CurrentReadingNew extends Fragment {
     }
 
 
-    private void SaveCheckedDetails() {
-        final ProgressDialog dialog = new ProgressDialog(getActivity());
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.setMessage("Please wait");
-        dialog.show();
+    private ParseObject getReadingDetailsParseObject() {
+//        final ProgressDialog dialog = new ProgressDialog(getActivity());
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.setMessage("Please wait");
+//        dialog.show();
 
         if (Double.parseDouble(units_generated.getText().toString().trim()) > 90 && Double.parseDouble(units_generated.getText().toString().trim()) < 110) {
             storage.saveSecure(Constants.CATEGORY, "A");
@@ -543,7 +558,7 @@ public class CurrentReadingNew extends Fragment {
         ParseObject object = new ParseObject("ReadingCheckedDetails");
         object.put("PreviousReading", previous_reading.getText().toString().trim());
         object.put("DateTime", Utility.setTimeStamp());
-        object.put("CurrentReading", present_reaing.getText().toString().trim());
+        object.put("CurrentReading", present_reading.getText().toString().trim());
         object.put("AverageUnit", avg_unit.getText().toString().trim());
         object.put("ExpectedBill", calculated_units.getText().toString().trim());
         object.put("USC_No", storage.getValue(Constants.USC_NO));
@@ -557,18 +572,19 @@ public class CurrentReadingNew extends Fragment {
         object.put("TotalCurrentUnits", String.valueOf(calculatedUnits));
         object.put("UserCategory", storage.getValue(Constants.CATEGORY));
 
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                Log.i("ParseException", "==>" + e);
-                dialog.dismiss();
-                if (e == null) {
-                    storage.saveSecure(Constants.AVG_UNIT_PER_DAY, avg_unit.getText().toString().trim());
-                } else {
-                    Utility.showToast(getActivity(), "Please try Again...!");
-                }
-            }
-        });
+        return object;
+//        object.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                Log.i("ParseException", "==>" + e);
+//                dialog.dismiss();
+//                if (e == null) {
+//                    storage.saveSecure(Constants.AVG_UNIT_PER_DAY, avg_unit.getText().toString().trim());
+//                } else {
+//                    Utility.showToast(getActivity(), "Please try Again...!");
+//                }
+//            }
+//        });
     }
 
     public void setDays() {

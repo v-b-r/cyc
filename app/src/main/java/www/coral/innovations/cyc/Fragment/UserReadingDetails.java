@@ -3,16 +3,10 @@ package www.coral.innovations.cyc.Fragment;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,37 +16,33 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.bumptech.glide.util.Util;
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import www.coral.innovations.cyc.Activities.HomeScreen;
-import www.coral.innovations.cyc.Activities.LoginActivity;
-import www.coral.innovations.cyc.Activities.Registration;
 import www.coral.innovations.cyc.R;
 import www.coral.innovations.cyc.Storage.Constants;
 import www.coral.innovations.cyc.Storage.Storage;
 import www.coral.innovations.cyc.Storage.Utility;
 
-public class UserReadingDetails extends Fragment implements View.OnClickListener {
+public class UserReadingDetails extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     EditText present_date, present_reading, previous_date, previous_reading, total_units, total_days, total_amount;
+    EditText meter_load, multi_factor;
+    Spinner category_spinner, phase_spinner;
     Button reset, submit;
 
     public static boolean previousFLG = false, presentFLG = false;
@@ -65,6 +55,7 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
     Calendar calendar;
     Storage storage ;
     ProgressBar progressSpinner ;
+    String meterCat, meterSubCat, meterPhase;
 
     TextView toolbar_title ;
 
@@ -88,15 +79,40 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
         total_days = (EditText) v.findViewById(R.id.total_days);
         total_amount = (EditText) v.findViewById(R.id.total_amount);
 
+        category_spinner = v.findViewById(R.id.meter_category);
+        meter_load = v.findViewById(R.id.meter_load);
+        phase_spinner = v.findViewById(R.id.meter_phase);
+        multi_factor = v.findViewById(R.id.multi_factor);
+
         previous_reading.setText(storage.getValue(Constants.PREVIOUS_READING));
         present_reading.setText(storage.getValue(Constants.PRESENT_READING));
         present_date.setText(storage.getValue(Constants.PRESENT_DATE));
         previous_date.setText(storage.getValue(Constants.PREVIOUS_DATE));
         total_units.setText(storage.getValue(Constants.TOTAL_UNITS));
         total_amount.setText(storage.getValue(Constants.TOTAL_AMOUNT));
+        meter_load.setText(storage.getValue(Constants.METER_LOAD));
+        multi_factor.setText(storage.getValue(Constants.MULTI_FACTOR));
 
         reset = (Button) v.findViewById(R.id.btn_reset);
         submit = (Button) v.findViewById(R.id.btn_submit);
+
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this.getActivity(),
+                R.array.meter_category_array, R.layout.spinner_item_text);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        category_spinner.setAdapter(arrayAdapter);
+        category_spinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> arrayAdapter1 = ArrayAdapter.createFromResource(this.getActivity(),
+                R.array.meter_phase_array, R.layout.spinner_item_text);
+        arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        phase_spinner.setAdapter(arrayAdapter1);
+        phase_spinner.setOnItemSelectedListener(this);
+
+        if (storage.getValue(Constants.METER_CATEGORY).equals("2") && storage.getValue(Constants.METER_SUBCATEGORY).equals("0"))
+            category_spinner.setSelection(1);
+
+        if (storage.getValue(Constants.METER_PHASE).equals("3"))
+            category_spinner.setSelection(1);
 
         present_date.setOnClickListener(this);
         previous_date.setOnClickListener(this);
@@ -162,6 +178,10 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
                 if (present_reading.getText().toString().trim().length()==0){
                     Utility.showToast(getActivity(),getString(R.string.present_reading_error));
                 }else if (previous_reading.getText().toString().trim().length()==0){
+                    Utility.showToast(getActivity(),getString(R.string.previous_reading_error));
+                }else if (multi_factor.getText().toString().trim().length()==0){
+                    Utility.showToast(getActivity(),getString(R.string.previous_reading_error));
+                }else if (meter_load.getText().toString().trim().length()==0){
                     Utility.showToast(getActivity(),getString(R.string.previous_reading_error));
                 }else {
                     if (Utility.isNetworkAvailable(getActivity())){
@@ -332,6 +352,10 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
         dialog.setMessage("Please wait");
         dialog.show();
 
+//        Log.d("meterDetailsCat", meterCat==null?"-":meterCat);
+//        Log.d("meterDetailsSubCat", meterSubCat==null?"-":meterSubCat);
+//        Log.d("meterDetailsPhase", meterPhase==null?"-":meterPhase);
+
         if(Integer.parseInt(total_units.getText().toString().trim())>90 && Integer.parseInt(total_units.getText().toString().trim())<110) {
             storage.saveSecure(Constants.CATEGORY, "A");
         }else if(Integer.parseInt(total_units.getText().toString().trim())>180 && Integer.parseInt(total_units.getText().toString().trim())<220) {
@@ -350,6 +374,11 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
         board_details.put("Amount", total_amount.getText().toString().trim());
         board_details.put("UserCategory",storage.getValue(Constants.CATEGORY) );
         board_details.put("USC_No", storage.getValue(Constants.USC_NO));
+        board_details.put(Constants.METER_CATEGORY, meterCat);
+        board_details.put(Constants.METER_SUBCATEGORY, meterSubCat);
+        board_details.put(Constants.METER_PHASE, meterPhase);
+        board_details.put(Constants.MULTI_FACTOR, multi_factor.getText().toString().trim());
+        board_details.put(Constants.METER_LOAD, meter_load.getText().toString().trim());
 
         board_details.saveInBackground(new SaveCallback() {
             @Override
@@ -364,6 +393,11 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
                     storage.saveSecure(Constants.TOTAL_UNITS, total_units.getText().toString().trim());
                     storage.saveSecure(Constants.TOTAL_DAYS, total_days.getText().toString().trim());
                     storage.saveSecure(Constants.TOTAL_AMOUNT, total_amount.getText().toString().trim());
+                    storage.saveSecure(Constants.METER_CATEGORY, meterCat);
+                    storage.saveSecure(Constants.METER_SUBCATEGORY, meterSubCat);
+                    storage.saveSecure(Constants.METER_PHASE, meterPhase);
+                    storage.saveSecure(Constants.METER_LOAD, meter_load.getText().toString().trim());
+                    storage.saveSecure(Constants.MULTI_FACTOR, multi_factor.getText().toString().trim());
 
                     storage.saveSecure(Constants.SAVE_NEW_DATA, "");
 
@@ -475,5 +509,41 @@ public class UserReadingDetails extends Fragment implements View.OnClickListener
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getId() == R.id.meter_category) {
+            String selectedItem = (String) parent.getItemAtPosition(position);
+            switch (position){
+                case 0:
+                    meterCat = "1";
+                    meterSubCat = "0";
+                    break;
+                case 1:
+                    meterCat = "2";
+                    meterSubCat = "0";
+                    break;
+                default:
+                    meterCat = "0";
+                    meterSubCat = "0";
+            }
+        } else if (parent.getId() == R.id.meter_phase) {
+            switch (position){
+//                case 0:
+//                    meterPhase = 1;
+//                    break;
+                case 1:
+                    meterPhase = "3";
+                    break;
+                default:
+                    meterPhase = "1";
+            }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

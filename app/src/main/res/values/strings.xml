@@ -29,9 +29,25 @@
     <string name="present">Present</string>
     <string name="previous">Previous</string>
     <string name="total_units">Units</string>
+    <string name="category">Category (CAT)</string>
+    <string name="phase">Phase (PH)</string>
+    <string name="phase_hint">1 or 3</string>
+    <string name="load">Contracted Load</string>
+    <string name="load_hint">Load (in KW)</string>
+    <string name="multi_factor">Multi. Factor (MF)</string>
+    <string name="multi_factor_hint">MF</string>
     <string name="total_days">Days</string>
     <string name="total_amount">Energy Charged\n(Amount)</string>
 
+    <string-array name="meter_category_array"> <!-- order is important - used in code -->
+        <item>1A/B DOMESTIC</item>
+        <item>2A NON-DOMESTIC/COMM</item>
+    </string-array>
+
+    <string-array name="meter_phase_array"> <!-- order is important - used in code -->
+        <item>1 - Single Phase</item>
+        <item>3 - Three Phase</item>
+    </string-array>
 
     <string name="billing_details_submit">Your Present Bill History</string>
     <string name="from_date">From Date</string>
@@ -58,6 +74,8 @@
     <string name="rupees">Rs.</string>
     <string name="present_reading_error">Please Enter Present Meter Reading</string>
     <string name="previous_reading_error">Please Enter Previous Meter Reading</string>
+    <string name="contracted_load_error">Please Enter Load Value</string>
+    <string name="multi_factor_error">Please Enter MF Value</string>
     <string name="days">Days</string>
     <string name="bill_duration">Bill Duration</string>
     <string name="average_units_per_day">Avg Unit per Day</string>

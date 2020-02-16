@@ -10,6 +10,12 @@ public class Constants {
     public static final String TOTAL_DAYS = "TOTAL_DAYS";
     public static final String TOTAL_AMOUNT = "TOTAL_AMOUNT";
 
+    public static final String METER_CATEGORY = "METER_CATEGORY";
+    public static final String METER_SUBCATEGORY = "METER_SUBCATEGORY";
+    public static final String METER_PHASE = "METER_PHASE";
+    public static final String METER_LOAD = "METER_LOAD";
+    public static final String MULTI_FACTOR = "MULTI_FACTOR";
+
     public static final String USER_PASSWORD = "USER_PASSWORD";
     public static final String USER_ID = "USER_ID";
     public static final String USER_EMAIL = "USER_EMAIL";
