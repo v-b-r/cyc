@@ -176,7 +176,7 @@ public class History extends android.support.v4.app.Fragment {
                                 date = temp[1];
                                 time = temp[0];
                             }
-                            histryList.add(new HistoryModel(date+" "+time,person.getString("AverageUnit"),person.getString("ExpectedBill")));
+                            histryList.add(new HistoryModel(date+" "+time,person.getString("AverageUnit") +" (" +person.getString("CurrentReading") + ")",person.getString("ExpectedBill")));
                         }
                         Collections.reverse(histryList);
                         HistoryAdapter mAdapter = new HistoryAdapter(histryList, getActivity());
