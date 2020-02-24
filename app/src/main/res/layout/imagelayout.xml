@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<www.coral.innovations.cyc.Storage.TouchImageView xmlns:android="http://schemas.android.com/apk/res/android"
+<www.coralinnovations.cyc.Storage.TouchImageView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/imageView1"
     android:layout_width="400dp"
     android:layout_height="400dp"
