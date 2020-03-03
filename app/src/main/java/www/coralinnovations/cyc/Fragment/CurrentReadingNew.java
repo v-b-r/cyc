@@ -2,7 +2,6 @@ package www.coralinnovations.cyc.Fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -29,17 +28,16 @@ import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.SaveCallback;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import www.coralinnovations.cyc.Activities.HomeScreen;
-import www.coralinnovations.cyc.Model.DetailedChargesModel;
 import www.coralinnovations.cyc.Model.GetChargesModel;
 import www.coralinnovations.cyc.R;
 import www.coralinnovations.cyc.Server.ServerCalls;
@@ -57,6 +55,7 @@ public class CurrentReadingNew extends Fragment {
     EditText present_reading;
     TableRow tariff_one, required_text, tariff_two, tariff_three, tariff_four, tariff_five, tariff_six, tariff_seven ;
     TextView previous_bill_date, offer_amount, history, previous_reading, date_time, required_units, check, calculated_units, units_generated, gen_unit_charge, avg_unit, avg_amnt, days_left, expected_units, expected_bill, click_here, help;
+    TextView wallet_balance;
     LinearLayout display_layout, blink_offer, layout_one, layout_two, layout_three;
     android.support.v7.widget.CardView offer_layout, other_layout;
     CountDownTimer newtimer ;
@@ -75,11 +74,13 @@ public class CurrentReadingNew extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_current_reading_new, container, false);
         storage = new Storage(getActivity());
-        present_reading = (EditText) v.findViewById(R.id.present_reaing);
+        present_reading = (EditText) v.findViewById(R.id.present_reading);
 
         previous_bill_date = (TextView) v.findViewById(R.id.previous_bill_date);
         previous_reading = (TextView) v.findViewById(R.id.previous_reading);
         meter_image = (ImageView)v.findViewById(R.id.meter_image);
+
+        wallet_balance = v.findViewById(R.id.wallet_balance);
 
         present_reading.requestFocus();
         //setKeyboardFocus(present_reading);
@@ -216,8 +217,34 @@ public class CurrentReadingNew extends Fragment {
         });
 
         setDays();
-
+        setWalletBalance();
         return v;
+    }
+
+    private void setWalletBalance(){
+        Calendar lastReadDate = Calendar.getInstance();
+        String units = storage.getValue(Constants.TOTAL_UNITS);
+        String days = storage.getValue(Constants.TOTAL_DAYS);
+        double per_day_units = Double.parseDouble(units.trim()) / Integer.parseInt(days);
+        per_day_units = Utility.DecimalUtils.round(per_day_units, 2);
+
+        int days_in_month = 30;
+        long days_passed = 1;
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            Date dateBefore = sdf.parse(storage.getValue(Constants.PRESENT_DATE));
+            days_passed = TimeUnit.DAYS.convert(lastReadDate.getTimeInMillis() - dateBefore.getTime(), TimeUnit.MILLISECONDS);
+            lastReadDate.setTime(dateBefore);
+            days_in_month = lastReadDate.getActualMaximum(Calendar.DAY_OF_MONTH);
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        if (!present_reading.getText().toString().isEmpty()) {
+            per_day_units = Utility.DecimalUtils.round((Double.parseDouble(present_reading.getText().toString()) - Double.parseDouble(storage.getValue(Constants.PRESENT_READING)))/days_passed, 2);
+        }
+        double per_day_price = Utility.getChargesAmount(per_day_units* days_in_month, storage.getValue(Constants.BOARD))/days_in_month;
+        wallet_balance.setText(String.valueOf(Utility.DecimalUtils.round( 1000 -  per_day_price * days_passed, 2)));
     }
 
     private void setHistoryPopup() {
@@ -391,7 +418,7 @@ public class CurrentReadingNew extends Fragment {
         Log.i("calculatedUnits 0","==>"+curUnits);
         req_expected_Units = curUnits ;
         if (Double.parseDouble(days_left.getText().toString().trim()) > 0) {
-            calculatedUnits = curUnits + (AvgUnits * Math.abs(Double.parseDouble(days_left.getText().toString().trim())));
+            calculatedUnits = Utility.DecimalUtils.round(curUnits + (AvgUnits * Math.abs(Double.parseDouble(days_left.getText().toString().trim()))), 1);
         } else {
             calculatedUnits = curUnits;
         }
@@ -464,79 +491,16 @@ public class CurrentReadingNew extends Fragment {
                 new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(prevDate)//"2020-01-18"
         );
         ServerCalls.getDetailedCharges(this.getActivity(), getCharges, calculated_units, readingParseObj, storage);
+
+        setWalletBalance();
     }
 
     private void setCalculatedUnitsToAmount(TextView calculated_units) {
         if (storage.getValue(Constants.TOTAL_UNITS).length() != 0) {
             double value = Double.parseDouble(calculated_units.getText().toString().trim());
-            Log.i("BOARD NAMee", "==>" + storage.getValue(Constants.BOARD) );
-            if (storage.getValue(Constants.BOARD).equals("MPPKVVJ") ||
-                    storage.getValue(Constants.BOARD).equals("MPPKVVJ") ||
-                    storage.getValue(Constants.BOARD).equals("MPPKVVJ")) {
-                if (value <= 30) {
-                    double rate = 3.10;
-                    double sum = value * rate + 40;
-                    calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(sum, 2)));
-                } else if (value <= 50) {
-                    double rate = 3.85;
-                    double sum = value * rate + 60;
-                    calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(sum, 2)));
-                } else if (value <= 100) {
-                    double rate = 3.85;
-                    double sum = value * rate + 60;
-                    calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(sum, 2)));
-                } else if (value <= 300) {
-                    double rate = 6.0;
-                    double sum = value * rate + 60;
-                    calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(sum, 2)));
-                } else  {
-                    double rate = 6.30;
-                    double sum = value * rate + 60;
-                    calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(sum, 2)));
-                }
-            }else {
-                double rate1 = 1.45;
-                double rate2 = 2.60;
-                double rate3 = 3.30;
-                double rate4 = 4.30;
-                double rate5 = 5.00;
-                double rate6 = 7.20;
-                double rate7 = 8.50;
-                double rate8 = 9.0;
-                double rate9 = 9.50;
-
-                double total = 0.0 ;
-                if (value<=50){
-                    total = value*rate1 ;
-                    Log.i("1","==>"+total);
-                }else if (value<=100){
-                    value = value - 50 ;
-                    total = 72.5 + (value*rate2) ;
-                    Log.i("2","==>"+total);
-                }else if (value<=200){
-                    value = value-100 ;
-                    total = 330 + (value*rate4) ;
-                    Log.i("3","==>"+total);
-                }else if (value<=300){
-                    value = value-200 ;
-                    total = 1000 + (value*rate6) ;
-                    Log.i("4","==>"+total);
-                }else if (value<=400){
-                    Log.i("5","==>"+value*rate7);
-                    value = value - 300 ;
-                    total = value*rate7 ;
-                    total = total + 1000 + 720  ;
-                    Log.i("5","==>"+total);
-                }else if (value<=800){
-                    value = value-400 ;
-                    total = 1000 + 720 + 850+ (value*rate8) ;
-                    Log.i("6","==>"+total);
-                }else if(value>800){
-                    total = 1000 + 720+ 850 + (value*rate9) ;
-                }
-                Log.i("TTTTT","==>"+total);
-                calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(total, 2)));
-            }
+            Log.i("BOARD NAMee", "==>" + storage.getValue(Constants.BOARD));
+            double amount = Utility.getChargesAmount(value, storage.getValue(Constants.BOARD));
+            calculated_units.setText(String.valueOf(Utility.DecimalUtils.round(amount, 2)));
         }
     }
 
@@ -623,7 +587,11 @@ public class CurrentReadingNew extends Fragment {
             System.out.println("current_date==>" + current_date);
             System.out.println("previous_date==>" + previous_date);
 
-            final_days = Double.parseDouble(previous_date) - Double.parseDouble(String.valueOf(daysBetween));
+            calendar.setTime(dateBefore);
+            int days_in_month = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+//            final_days = Double.parseDouble(previous_date) - Double.parseDouble(String.valueOf(daysBetween));
+            final_days = days_in_month - (int)Double.parseDouble(String.valueOf(daysBetween));
             System.out.println("final_days==>" + final_days);
 
             total_next_days = Double.parseDouble(current_date )+ final_days ;

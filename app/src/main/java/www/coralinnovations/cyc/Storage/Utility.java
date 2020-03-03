@@ -73,6 +73,72 @@ public class Utility {
         }
     }
 */
+
+
+    public static double getChargesAmount(double value, String boardName) {
+        double total = 0;
+        if (boardName.equals("MPPKVVJ")) {
+            if (value <= 30) {
+                double rate = 3.10;
+                total = value * rate + 40;
+            } else if (value <= 50) {
+                double rate = 3.85;
+                total = value * rate + 60;
+            } else if (value <= 100) {
+                double rate = 4.7;
+                total = value * rate + 60;
+            } else if (value <= 300) {
+                double rate = 6.0;
+                total = value * rate + 60;
+            } else  {
+                double rate = 6.30;
+                total = value * rate + 60;
+            }
+        }else {
+            double rate1 = 1.45;
+            double rate2 = 2.60;
+            double rate3 = 3.30;
+            double rate4 = 4.30;
+            double rate5 = 5.00;
+            double rate6 = 7.20;
+            double rate7 = 8.50;
+            double rate8 = 9.0;
+            double rate9 = 9.50;
+
+            if (value<=50){
+                total = value*rate1 ;
+                Log.i("1","==>"+total);
+            }else if (value<=100){
+                value = value - 50 ;
+                total = 72.5 + (value*rate2) ;
+                Log.i("2","==>"+total);
+            }else if (value<=200){
+                value = value-100 ;
+                total = 330 + (value*rate4) ;
+                Log.i("3","==>"+total);
+            }else if (value<=300){
+                value = value-200 ;
+                total = 1000 + (value*rate6) ;
+                Log.i("4","==>"+total);
+            }else if (value<=400){
+                Log.i("5","==>"+value*rate7);
+                value = value - 300 ;
+                total = value*rate7 ;
+                total = total + 1000 + 720  ;
+                Log.i("5","==>"+total);
+            }else if (value<=800){
+                value = value-400 ;
+                total = 1000 + 720 + 850+ (value*rate8) ;
+                Log.i("6","==>"+total);
+            }else if(value>800){
+                total = 1000 + 720+ 850 + (value*rate9) ;
+            }
+            Log.i("TTTTT","==>"+total);
+        }
+        return Utility.DecimalUtils.round(total, 2);
+    }
+
+
     public static void alertDialogShow(Context context, String message)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

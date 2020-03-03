@@ -130,6 +130,42 @@
                     </TableRow>
                 </TableRow>
 
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_40"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rs"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/heading_text_size" />
+
+                    <TextView
+                        android:id="@+id/wallet_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_10"
+                        android:text="..."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/little_big_text"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:text="(Wallet Balance)"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/small_text" />
+
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,7 +183,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/present_reaing"
+                        android:id="@+id/present_reading"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
