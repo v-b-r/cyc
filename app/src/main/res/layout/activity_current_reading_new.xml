@@ -135,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_40"
-                    android:gravity="center_horizontal">
+                    android:gravity="center_horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,7 +165,8 @@
                     android:layout_marginBottom="@dimen/margin_5"
                     android:text="(Wallet Balance)"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/small_text" />
+                    android:textSize="@dimen/small_text"
+                    android:visibility="gone"/>
 
                 <TableRow
                     android:layout_width="match_parent"
