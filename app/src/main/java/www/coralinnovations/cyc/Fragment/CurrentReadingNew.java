@@ -487,7 +487,7 @@ public class CurrentReadingNew extends Fragment {
                 storage.getValue(Constants.METER_SUBCATEGORY),
                 storage.getValue(Constants.METER_PHASE),
                 storage.getValue(Constants.METER_LOAD),
-                storage.getValue(Constants.METER_LOAD),
+                storage.getValue(Constants.MULTI_FACTOR),
                 new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(prevDate)//"2020-01-18"
         );
         ServerCalls.getDetailedCharges(this.getActivity(), getCharges, calculated_units, readingParseObj, storage);
