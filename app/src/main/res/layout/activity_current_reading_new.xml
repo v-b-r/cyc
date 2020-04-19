@@ -349,6 +349,41 @@
 
                             </TableRow>
 
+                            <TableRow
+                                android:id="@+id/average_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/margin_10"
+                                android:layout_marginBottom="@dimen/margin_10"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size"
+                                    android:textColor="@color/text_color"
+                                    android:text="Maintain average below "/>
+
+                                <TextView
+                                    android:id="@+id/average_units"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/heading_text_size"
+                                    android:textColor="@color/green"
+                                    android:paddingLeft="@dimen/margin_4"
+                                    android:paddingRight="@dimen/margin_4"
+                                    android:textStyle="bold"
+                                    android:text="0.50"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size"
+                                    android:textColor="@color/text_color"
+                                    android:text="Units per day."/>
+
+                            </TableRow>
+
 
                             <TableRow
                                 android:layout_width="match_parent"
@@ -373,6 +408,17 @@
                                     android:paddingRight="@dimen/margin_4"
                                     android:textStyle="bold"
                                     android:text="0.50"/>
+
+                                <TextView
+                                    android:id="@+id/month_count"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/heading_text_size"
+                                    android:textColor="@color/orange"
+                                    android:paddingLeft="@dimen/margin_4"
+                                    android:paddingRight="@dimen/margin_4"
+                                    android:textStyle="bold"
+                                    android:text=" "/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -675,6 +721,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/layout_one_title"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="@dimen/margin_10"
@@ -697,6 +744,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_one_slab_one"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -715,6 +763,7 @@
                                                 android:textSize="@dimen/small_text" />
 
                                             <TextView
+                                                android:id="@+id/layout_one_amount_one"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -739,6 +788,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_one_slab_two"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -758,6 +808,7 @@
 
 
                                             <TextView
+                                                android:id="@+id/layout_one_amount_two"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -782,6 +833,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/layout_two_title"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="@dimen/margin_10"
@@ -804,6 +856,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_two_slab_one"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -822,6 +875,7 @@
                                                 android:textSize="@dimen/small_text" />
 
                                             <TextView
+                                                android:id="@+id/layout_two_amount_one"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -845,6 +899,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_two_slab_two"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -863,6 +918,7 @@
                                                 android:textSize="@dimen/small_text" />
 
                                             <TextView
+                                                android:id="@+id/layout_two_amount_two"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -887,6 +943,7 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/layout_three_title"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:layout_marginLeft="@dimen/margin_10"
@@ -909,6 +966,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_three_slab_one"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -927,6 +985,7 @@
                                                 android:textSize="@dimen/small_text" />
 
                                             <TextView
+                                                android:id="@+id/layout_three_amount_one"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -952,6 +1011,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_three_slab_two"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -970,6 +1030,7 @@
                                                 android:textSize="@dimen/small_text" />
 
                                             <TextView
+                                                android:id="@+id/layout_three_amount_two"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -995,6 +1056,7 @@
                                             android:weightSum="3">
 
                                             <TextView
+                                                android:id="@+id/layout_three_slab_three"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
@@ -1013,6 +1075,7 @@
                                                 android:textSize="@dimen/small_text" />
 
                                             <TextView
+                                                android:id="@+id/layout_three_amount_three"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"

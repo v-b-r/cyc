@@ -53,12 +53,15 @@ public class CurrentReadingNew extends Fragment {
     Storage storage;
     CountDownTimer mTimer;
     EditText present_reading;
-    TableRow tariff_one, required_text, tariff_two, tariff_three, tariff_four, tariff_five, tariff_six, tariff_seven ;
-    TextView previous_bill_date, offer_amount, history, previous_reading, date_time, required_units, check, calculated_units, units_generated, gen_unit_charge, avg_unit, avg_amnt, days_left, expected_units, expected_bill, click_here, help;
+    TableRow tariff_one, required_text, average_text, tariff_two, tariff_three, tariff_four, tariff_five, tariff_six, tariff_seven ;
+    TextView previous_bill_date, offer_amount, history, previous_reading, date_time, required_units, average_units, check, calculated_units, units_generated, gen_unit_charge, avg_unit, avg_amnt, days_left, month_count, expected_units, expected_bill, click_here, help;
     TextView wallet_balance;
+    TextView layout_one_title, layout_two_title, layout_three_title, layout_one_slab_one, layout_one_amount_one, layout_one_slab_two, layout_one_amount_two, layout_two_slab_one, layout_two_amount_one, layout_two_slab_two, layout_two_amount_two, layout_three_slab_one, layout_three_amount_one, layout_three_slab_two, layout_three_amount_two, layout_three_slab_three, layout_three_amount_three;
     LinearLayout display_layout, blink_offer, layout_one, layout_two, layout_three;
     android.support.v7.widget.CardView offer_layout, other_layout;
     CountDownTimer newtimer ;
+    int monthCount = 0;
+    int totalDays = 0;
 
     /*public static void setKeyboardFocus(final EditText primaryTextField) {
         (new Handler()).postDelayed(new Runnable() {
@@ -94,7 +97,9 @@ public class CurrentReadingNew extends Fragment {
         //offer_amount.setShadowLayer(5, 0, 0, Color.BLACK);
 
         required_text = (TableRow) v.findViewById(R.id.required_text);
+        average_text = (TableRow) v.findViewById(R.id.average_text);
         required_units = (TextView) v.findViewById(R.id.required_units);
+        average_units = (TextView) v.findViewById(R.id.average_units);
         history = (TextView) v.findViewById(R.id.history);
         date_time = (TextView) v.findViewById(R.id.date_time);
         check = (TextView) v.findViewById(R.id.check);
@@ -104,6 +109,7 @@ public class CurrentReadingNew extends Fragment {
         avg_unit = (TextView) v.findViewById(R.id.avg_unit);
         //avg_amnt = (TextView) v.findViewById(R.id.avg_amnt);
         days_left = (TextView) v.findViewById(R.id.days_left);
+        month_count = (TextView) v.findViewById(R.id.month_count);
         expected_bill = (TextView) v.findViewById(R.id.expected_bill);
         expected_units = (TextView) v.findViewById(R.id.expected_units);
         click_here = (TextView) v.findViewById(R.id.click_here);
@@ -125,6 +131,26 @@ public class CurrentReadingNew extends Fragment {
         tariff_five = (TableRow)v.findViewById(R.id.tariff_five);
         tariff_six = (TableRow)v.findViewById(R.id.tariff_six);
         tariff_seven = (TableRow)v.findViewById(R.id.tariff_seven);
+
+        layout_one_title = (TextView) v.findViewById(R.id.layout_one_title);
+        layout_one_slab_one = (TextView) v.findViewById(R.id.layout_one_slab_one);
+        layout_one_amount_one = (TextView) v.findViewById(R.id.layout_one_amount_one);
+        layout_one_slab_two = (TextView) v.findViewById(R.id.layout_one_slab_two);
+        layout_one_amount_two = (TextView) v.findViewById(R.id.layout_one_amount_two);
+
+        layout_two_title = (TextView) v.findViewById(R.id.layout_two_title);
+        layout_two_slab_one = (TextView) v.findViewById(R.id.layout_two_slab_one);
+        layout_two_amount_one = (TextView) v.findViewById(R.id.layout_two_amount_one);
+        layout_two_slab_two = (TextView) v.findViewById(R.id.layout_two_slab_two);
+        layout_two_amount_two = (TextView) v.findViewById(R.id.layout_two_amount_two);
+
+        layout_three_title = (TextView) v.findViewById(R.id.layout_three_title);
+        layout_three_slab_one = (TextView) v.findViewById(R.id.layout_three_slab_one);
+        layout_three_amount_one = (TextView) v.findViewById(R.id.layout_three_amount_one);
+        layout_three_slab_two = (TextView) v.findViewById(R.id.layout_three_slab_two);
+        layout_three_amount_two = (TextView) v.findViewById(R.id.layout_three_amount_two);
+        layout_three_slab_three = (TextView) v.findViewById(R.id.layout_three_slab_three);
+        layout_three_amount_three = (TextView) v.findViewById(R.id.layout_three_amount_three);
 
        /* layout_one.setVisibility(View.GONE);
         layout_two.setVisibility(View.GONE);
@@ -444,26 +470,34 @@ public class CurrentReadingNew extends Fragment {
 
         double required_units_value = 0.0 ;
         if (Double.parseDouble(days_left.getText().toString().trim()) > 0) {
-            if (calculatedUnits> 90 && calculatedUnits< 110) {
-                required_units_value = 100 - calculatedUnits;
+            if (calculatedUnits> 90*monthCount && calculatedUnits< 110*monthCount) {
+                required_units_value = 100*monthCount - calculatedUnits;
                 Log.i("required_units_value A", "==>" + required_units_value);
-                required_text.setVisibility(View.VISIBLE);
+                average_units.setText(String.valueOf(Utility.DecimalUtils.round(100.0f*monthCount/totalDays, 2)));
+                if (required_units_value < 0)
+                    required_text.setVisibility(View.VISIBLE);
                 required_units.setVisibility(View.VISIBLE);
+                average_text.setVisibility(View.VISIBLE);
                 offer_layout.setVisibility(View.VISIBLE);
                 other_layout.setVisibility(View.GONE);
-                offer_amount.setText("127.5");
-            } else if (calculatedUnits > 180 && calculatedUnits < 220) {
-                required_units_value = 200 - calculatedUnits;
+                offer_amount.setText(String.valueOf(127.5*monthCount));
+            } else if (calculatedUnits > 180*monthCount && calculatedUnits < 220*monthCount) {
+                required_units_value = 200*monthCount - calculatedUnits;
                 Log.i("required_units_value B", "==>" + required_units_value);
-                required_text.setVisibility(View.VISIBLE);
+                if (required_units_value < 0)
+                    required_text.setVisibility(View.VISIBLE);
+                average_units.setText(String.valueOf(Utility.DecimalUtils.round(200.0f*monthCount/totalDays, 2)));
                 required_units.setVisibility(View.VISIBLE);
+                average_text.setVisibility(View.VISIBLE);
                 offer_layout.setVisibility(View.VISIBLE);
                 other_layout.setVisibility(View.GONE);
-                offer_amount.setText("240");
+                offer_amount.setText(String.valueOf(240*monthCount));
             } else {
+                average_text.setVisibility(View.GONE);
                 required_text.setVisibility(View.GONE);
             }
         } else {
+            average_text.setVisibility(View.GONE);
             required_text.setVisibility(View.GONE);
         }
          /*else {
@@ -592,15 +626,71 @@ public class CurrentReadingNew extends Fragment {
 
 //            final_days = Double.parseDouble(previous_date) - Double.parseDouble(String.valueOf(daysBetween));
             final_days = days_in_month - (int)Double.parseDouble(String.valueOf(daysBetween));
+            monthCount = 1;
+            totalDays = days_in_month;
+            while (final_days < -5) {
+                calendar.add(Calendar.MONTH, 1);
+                final_days += calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+                totalDays += calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+                monthCount++;
+            }
+            setSlabData();
+
+            calendar.add(Calendar.MONTH, monthCount * -1);
             System.out.println("final_days==>" + final_days);
 
             total_next_days = Double.parseDouble(current_date )+ final_days ;
+            System.out.println("month_count==>" + monthCount);
+            if (monthCount > 1) {
+                String monthString = " ("+ String.valueOf(monthCount) +" months)";
+                month_count.setText(monthString);
+            }
             days_left.setText(String.valueOf(final_days).replace(".0",""));
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setSlabData(){
+        String displayText = "Category A :(Upto "+ 100*monthCount +" units/Month)";
+        layout_one_title.setText(displayText);
+        displayText = "0-"+50*monthCount;
+        layout_one_slab_one.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(1.45 * 50 * monthCount, 2));
+        layout_one_amount_one.setText(displayText);
+        displayText = (50*monthCount+1)+"-"+100*monthCount;
+        layout_one_slab_two.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(2.6 * 50 * monthCount, 2));
+        layout_one_amount_two.setText(displayText);
+
+        displayText = "Category B(i) :(Above "+100*monthCount+" and Upto "+200*monthCount+" units/Month)";
+        layout_two_title.setText(displayText);
+        displayText = "0-"+100*monthCount;
+        layout_two_slab_one.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(3.3 * 100 * monthCount, 2));
+        layout_two_amount_one.setText(displayText);
+        displayText = (100*monthCount+1)+"-"+200*monthCount;
+        layout_two_slab_two.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(4.3 * 100 * monthCount, 2));
+        layout_two_amount_two.setText(displayText);
+
+
+        displayText = "Category B(ii) :(Above "+200*monthCount+" units/Month)";
+        layout_three_title.setText(displayText);
+        displayText = "0-"+200*monthCount;
+        layout_three_slab_one.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(5.0 * 200 * monthCount, 2));
+        layout_three_amount_one.setText(displayText);
+        displayText = (200*monthCount+1)+"-"+300*monthCount;
+        layout_three_slab_two.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(7.2 * 100 * monthCount, 2));
+        layout_three_amount_two.setText(displayText);
+        displayText = (300*monthCount+1)+"-"+400*monthCount;
+        layout_three_slab_three.setText(displayText);
+        displayText = String.valueOf(Utility.DecimalUtils.round(8.5 * 100 * monthCount, 2));
+        layout_three_amount_three.setText(displayText);
     }
 
     private void setDaysAlert() {
